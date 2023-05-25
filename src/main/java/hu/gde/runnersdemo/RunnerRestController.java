@@ -42,6 +42,25 @@ public class RunnerRestController {
         }
     }
 
+    @GetMapping("/highestName")
+    public String getHighestName(){
+        List<RunnerEntity> runners = runnerRepository.findAll();
+        int heightMax = 0;
+        String highestName ="alap";
+        if(runners != null){
+            for(RunnerEntity runner: runners){
+                if(heightMax < runner.getHeight()){
+                    heightMax = runner.getHeight();
+                    highestName = runner.getRunnerName();
+                }
+            }
+            return highestName;
+        } else {
+            return " Nincs felvitt futó!";
+        }
+
+
+    }
     @GetMapping("")
     public List<RunnerEntity> getAllRunners() {
         return runnerRepository.findAll();
@@ -61,6 +80,7 @@ public class RunnerRestController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Runner with ID " + id + " not found");
         }
     }
+
     public static class LapTimeRequest {
         private int lapTimeSeconds;
 
