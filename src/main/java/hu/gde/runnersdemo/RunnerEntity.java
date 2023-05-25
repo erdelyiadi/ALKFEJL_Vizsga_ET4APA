@@ -20,6 +20,10 @@ public class RunnerEntity {
     @OneToMany
     private SponzorEntity sponzor;
 
+    public void setSponzor(SponzorEntity sponzor) {
+        this.sponzor = sponzor;
+    }
+
     public SponzorEntity getSponzor() {
         return sponzor;
     }
